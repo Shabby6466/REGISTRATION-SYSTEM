@@ -1,116 +1,112 @@
-Olympiad Registration System Documentation
-Project Title: Olympiad Registration System
-Members:
-•	Shoaib [F22605029] 
-•	Wasiq[F22605042] 
-•	Fahad Ali[F22605039]
+# Olympiad Registration System
 
-Date: 6th June, 2024
-________________________________________
-Table of Contents
-1.	Enhanced ERD Diagram
-2.	Entity Attributes
-3.	SQL Statements
-4.	Screenshots of Query Outputs
-5.	Normalized Tables
-6.	Additional Details
-________________________________________
-Enhanced ERD Diagram
-________________________________________
-Entity Attributes
-Users
-•	user_id (Primary Key)
-•	username
-•	password
-•	email
-•	full_name
-•	role_id (Foreign Key)
-•	created_at
-Events
-•	event_id (Primary Key)
-•	event_name
-•	description
-•	event_date
-•	location
-•	created_by (Foreign Key)
-Registrations
-•	registration_id (Primary Key)
-•	user_id (Foreign Key)
-•	event_id (Foreign Key)
-•	registration_date
-Payments
-•	payment_id (Primary Key)
-•	registration_id (Foreign Key)
-•	amount
-•	payment_date
-•	status_id (Foreign Key)
-________________________________________
-SQL Statements
-Database Creation
- 
-Table Creation
+## Overview
 
- 
- 
- 
+The Olympiad Registration System is a database management project designed to handle the registration process for various Olympiad events. This project includes the design and implementation of a normalized database, SQL scripts for creating and populating tables, and queries for data manipulation and retrieval.
 
- 
+## Table of Contents
 
-Data Population
- 
- 
- 
- 
- 
+- [Overview](#overview)
+- [Features](#features)
+- [ERD Diagram](#erd-diagram)
+- [Database Schema](#database-schema)
+- [SQL Scripts](#sql-scripts)
+- [Screenshots](#screenshots)
+- [Normalization](#normalization)
+- [Additional Details](#additional-details)
+- [Installation](#installation)
+  
+## Features
 
- 
- 
- 
- 
+- User registration and role management
+- Event creation and management
+- User event registration
+- Payment processing and status tracking
+- Data integrity and referential integrity enforced through foreign keys
+- Aggregation functions for data analysis
 
-Query Tasks  & Screenshots of Query Outputs
+## ERD Diagram
 
-1.	Creating, Updating and Altering Tables
- 
- 
- 
-2.	Implementing SQL functions for data transformation or calculation.
- 
- 
-3.	Aggregation functions
- 
- 
- 
- 
-4.	Join functions to retrieve data from multiple tables
- 
+![Enhanced ERD Diagram](path/to/your/enhanced-erd-diagram.png)
 
- 
-________________________________________
-Normalization Explanation
-•	1NF: All tables have atomic columns and unique rows.
-•	2NF: There are no partial dependencies since all non-key attributes depend on the whole primary key.
-•	3NF: There are no transitive dependencies since all attributes are only dependent on the primary key.
-Users Table
-•	1NF: Each attribute contains atomic values, and each row is unique.
-•	2NF: No partial dependencies; all non-key attributes depend on the entire primary key (user_id).
-•	3NF: No transitive dependencies; all attributes are only dependent on the primary key (user_id).
-Events Table
-•	1NF: Atomic values and unique rows.
-•	2NF: Fully dependent on the primary key (event_id).
-•	3NF: Attributes depend only on the primary key (event_id).
-Registrations Table
-•	1NF: Atomic values and unique rows.
-•	2NF: Fully dependent on the composite primary key (registration_id).
-•	3NF: Attributes depend only on the composite primary key (registration_id).
-Payments Table
-•	1NF: Atomic values and unique rows.
-•	2NF: Fully dependent on the primary key (payment_id).
-•	3NF: Attributes depend only on the primary key (payment_id).
+## Database Schema
+
+### UserRoles Table
+- `role_id` (Primary Key)
+- `role_name`
+
+### Users Table
+- `user_id` (Primary Key)
+- `username`
+- `password`
+- `email`
+- `full_name`
+- `role_id` (Foreign Key)
+- `created_at`
+
+### Events Table
+- `event_id` (Primary Key)
+- `event_name`
+- `description`
+- `event_date`
+- `location`
+- `created_by` (Foreign Key)
+
+### Registrations Table
+- `registration_id` (Primary Key)
+- `user_id` (Foreign Key)
+- `event_id` (Foreign Key)
+- `registration_date`
+
+### PaymentStatuses Table
+- `status_id` (Primary Key)
+- `status_name`
+
+### Payments Table
+- `payment_id` (Primary Key)
+- `registration_id` (Foreign Key)
+- `amount`
+- `payment_date`
+- `status_id` (Foreign Key)
 
 
-Additional Details
-•  Indexes: Adding indexes to frequently queried columns (e.g., user_id in the Registrations table, event_id in the Payments table) can significantly improve query performance. Indexes speed up data retrieval operations by allowing the database engine to find rows more quickly.
-•  Normalization Trade-offs: While normalization reduces redundancy and improves data integrity, it can sometimes lead to complex queries and slower performance due to the need for joins. In such cases, consider denormalization balance performance and data integrity requirements.
+## Normalization
+
+The database schema is normalized to at least Third Normal Form (3NF), ensuring minimal redundancy and maintaining data integrity.
+
+### First Normal Form (1NF)
+- Ensures that all tables contain only atomic values and each record is unique.
+
+### Second Normal Form (2NF)
+- Ensures that all non-key attributes are fully dependent on the primary key.
+
+### Third Normal Form (3NF)
+- Ensures that all attributes are only dependent on the primary key, eliminating transitive dependencies.
+
+## Additional Details
+
+### Design Choices
+- **UserRoles** table for role-based access control.
+- **PaymentStatuses** table to manage and track payment statuses.
+
+### Security Considerations
+- Passwords should be hashed using a strong hashing algorithm before being stored in the database.
+- Use parameterized queries in the frontend application to protect against SQL injection attacks.
+
+### Performance Optimization
+- Indexes can be added to frequently queried columns to improve performance.
+- Consider denormalization or caching strategies for complex queries and large datasets.
+
+## Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/olympiad-registration-system.git
+    ```
+
+2. Open the project in SQL Server Management Studio (SSMS).
+
+3. Run the SQL scripts provided in the `sql` folder to create and populate the database.
 
 
+Shoaib Fayyaz the KING
